@@ -1,0 +1,48 @@
+{
+  "name": "cachex",
+  "version": "1.0.0",
+  "description": "Zero-dependency in-memory cache library for Node.js with LRU eviction, TTL support, and multi-namespace operations",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "cachex": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf dist/",
+    "test": "node --test tests/*.test.mjs",
+    "prepublishOnly": "npm run build",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "cache",
+    "lru",
+    "ttl",
+    "memory-cache",
+    "inmemory",
+    "node",
+    "typescript",
+    "zero-dependency",
+    "lru-cache",
+    "time-to-live"
+  ],
+  "author": "Sulthonzh",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ]
+}
