@@ -6,7 +6,11 @@
  * 
  * @author Sulthonzh
  * @license MIT
+ * @version 1.1.0
  */
+
+export const VERSION = '1.1.0';
+
 
 export interface CacheOptions {
   /** Maximum number of items in cache (default: 1000) */

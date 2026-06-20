@@ -1,3 +1,4 @@
+export const VERSION = '1.1.0';
 export class LRUCache {
     constructor(options = {}) {
         this.cache = new Map();

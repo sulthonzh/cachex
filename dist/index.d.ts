@@ -1,3 +1,4 @@
+export declare const VERSION = "1.1.0";
 export interface CacheOptions {
     maxSize?: number;
     ttl?: number;

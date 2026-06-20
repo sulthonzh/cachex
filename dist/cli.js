@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { Cache, MultiCache } from './index.js';
+const VERSION = '1.1.0';
 const C = {
     reset: '\x1b[0m', red: '\x1b[31m', green: '\x1b[32m',
     yellow: '\x1b[33m', cyan: '\x1b[36m', bright: '\x1b[1m'
@@ -23,6 +24,7 @@ Commands:
   demo                 Run a demonstration
   save <file>          Save cache to JSON file
   load <file>          Load cache from JSON file
+  version              Show version number
 
 Options:
   -t, --ttl <ms>       Time to live in milliseconds
@@ -105,6 +107,10 @@ function saveToFile(cache, filename) {
 const argv = process.argv.slice(2);
 if (argv.length === 0) {
     usage();
+    process.exit(0);
+}
+if (argv.includes('--version') || argv.includes('-V') || argv.includes('version')) {
+    console.log(VERSION);
     process.exit(0);
 }
 const { command, opts, rest } = parseArgs(argv);
