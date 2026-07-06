@@ -428,6 +428,12 @@ export class Cache<V = any> {
    * Check if a key exists in the cache
    */
   has(key: string): boolean {
+    // Check per-key TTL expiry
+    const expiry = this.perKeyTtl.get(key);
+    if (expiry !== undefined && Date.now() > expiry) {
+      this.delete(key);
+      return false;
+    }
     return this.lru.has(key);
   }
 
@@ -634,42 +640,6 @@ export const CacheUtils = {
       return 0;
     }
   }
-};
-
-/**
- * Cache strategies
- */
-export const CacheStrategies = {
-  /**
-   * Cache with time-to-live (TTL)
-   */
-  ttl: <V>(_ttl: number) => (value: V): V => value,
-
-  /**
-   * Cache with size-based eviction
-   */
-  size: <V>(_maxSize: number) => (value: V): V => value,
-
-  /**
-   * Cache with write-through pattern
-   */
-  writeThrough: <V>(cache: Cache<V>, store: { set: (key: string, value: V) => void }) => 
-    (key: string, value: V): V => {
-      cache.set(key, value);
-      store.set(key, value);
-      return value;
-    },
-
-  /**
-   * Cache with write-behind pattern
-   */
-  writeBehind: <V>(cache: Cache<V>, store: { set: (key: string, value: V) => Promise<void> }) => 
-    (key: string, value: V): V => {
-      cache.set(key, value);
-      // Schedule async write to store
-      setTimeout(() => store.set(key, value), 100);
-      return value;
-    }
 };
 
 // Default cache instance
