@@ -54,5 +54,8 @@
   "homepage": "https://github.com/sulthonzh/cachex#readme",
   "bugs": {
     "url": "https://github.com/sulthonzh/cachex/issues"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.31.0"
   }
 }
