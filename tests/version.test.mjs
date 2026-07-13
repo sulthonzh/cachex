@@ -1,6 +1,11 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 import { VERSION } from '../dist/index.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const cliPath = join(__dirname, '..', 'dist', 'cli.js');
 
 describe('VERSION', () => {
   it('should export VERSION constant', () => {
@@ -16,7 +21,7 @@ describe('VERSION', () => {
 describe('CLI --version flag', () => {
   it('should accept --version flag', async () => {
     const { spawn } = await import('child_process');
-    const proc = spawn('node', ['dist/cli.js', '--version'], {
+    const proc = spawn('node', [cliPath, '--version'], {
       cwd: process.cwd(),
       env: process.env
     });
@@ -34,7 +39,7 @@ describe('CLI --version flag', () => {
 
   it('should accept -V flag', async () => {
     const { spawn } = await import('child_process');
-    const proc = spawn('node', ['dist/cli.js', '-V'], {
+    const proc = spawn('node', [cliPath, '-V'], {
       cwd: process.cwd(),
       env: process.env
     });
@@ -52,7 +57,7 @@ describe('CLI --version flag', () => {
 
   it('should accept version command', async () => {
     const { spawn } = await import('child_process');
-    const proc = spawn('node', ['dist/cli.js', 'version'], {
+    const proc = spawn('node', [cliPath, 'version'], {
       cwd: process.cwd(),
       env: process.env
     });
