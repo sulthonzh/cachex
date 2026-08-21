@@ -5,11 +5,11 @@
 ## Quick Start
 
 ```bash
-npm install cachex
+npm install @sulthonzh/cachex
 ```
 
 ```typescript
-import { Cache } from 'cachex';
+import { Cache } from '@sulthonzh/cachex';
 
 const cache = new Cache({ ttl: 5000, maxSize: 1000 });
 
@@ -32,7 +32,7 @@ cache.getStats(); // { size: 0, gets: 1, sets: 1, hits: 1, misses: 0, hitRatio: 
 ### 1. API Response Caching (5-minute TTL)
 
 ```typescript
-import { Cache } from 'cachex';
+import { Cache } from '@sulthonzh/cachex';
 
 const apiCache = new Cache({ ttl: 300000 }); // 5 minutes
 
@@ -56,7 +56,7 @@ const users2 = await fetchWithCache('/api/users'); // Second call: returns cache
 ### 2. Session Storage with Per-Key Expiration
 
 ```typescript
-import { Cache } from 'cachex';
+import { Cache } from '@sulthonzh/cachex';
 
 const sessionCache = new Cache();
 
@@ -81,7 +81,7 @@ const userSession = createSession('user:bob'); // 30 minutes
 ### 3. Multi-Cache for Isolated User Data
 
 ```typescript
-import { MultiCache } from 'cachex';
+import { MultiCache } from '@sulthonzh/cachex';
 
 const userCaches = new MultiCache({ ttl: 600000, maxSize: 500 });
 
@@ -113,7 +113,7 @@ console.log(Array.from(allStats.entries()));
 ### Cache Class
 
 ```typescript
-import { Cache } from 'cachex';
+import { Cache } from '@sulthonzh/cachex';
 
 const cache = new Cache<V>({
   maxSize: 1000,          // Maximum items (default: 1000)
@@ -141,7 +141,7 @@ cache.destroy()                       // Stop cleanup timers
 ### MultiCache Class
 
 ```typescript
-import { MultiCache } from 'cachex';
+import { MultiCache } from '@sulthonzh/cachex';
 
 const multi = new MultiCache<V>(options);
 
@@ -161,7 +161,7 @@ multi.deleteCache(cacheName)            // Delete entire cache
 ### CacheUtils
 
 ```typescript
-import { CacheUtils } from 'cachex';
+import { CacheUtils } from '@sulthonzh/cachex';
 
 // Factory functions
 const ttlCache = CacheUtils.createTTLCache(60000, 1000);  // TTL cache
@@ -251,7 +251,7 @@ Mixed:      156.3ms (0.001563ms/op)
 ## Version
 
 ```typescript
-import { VERSION } from 'cachex';
+import { VERSION } from '@sulthonzh/cachex';
 console.log(VERSION); // '1.1.0'
 ```
 

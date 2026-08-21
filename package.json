@@ -1,5 +1,5 @@
 {
-  "name": "cachex",
+  "name": "@sulthonzh/cachex",
   "version": "1.1.0",
   "description": "Zero-dependency in-memory cache library for Node.js with LRU eviction, TTL support, and multi-namespace operations",
   "type": "module",
@@ -57,6 +57,10 @@
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.0",
-    "@types/node": "^26.2.0"
+    "@types/node": "^26.2.0",
+    "typescript": "^6.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
