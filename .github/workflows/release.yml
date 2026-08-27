@@ -29,7 +29,11 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      - run: npm install --no-fund --no-audit
+      - run: npm ci
+
+      - run: npm run build
+
+      - run: npm test
 
       - name: Create Release Pull Request or Publish
         uses: changesets/action@v2.1.1
